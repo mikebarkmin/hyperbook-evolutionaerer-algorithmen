@@ -1,12 +1,16 @@
 {
-  "name": "Hyperbook GitHub Pages",
+  "name": "Künstliche Intelligenz",
   "version": "0.0.1",
-  "description": "This is an example for deploying Hyperbook on GitHub pages",
+  "description": "Ein Hyperbook zur Künstlichen Intelligenz",
   "author": {
     "name": "Mike Barkmin",
     "url": "https://barkmin.eu"
   },
+  "logo": "/logo.png",
+  "colors": {
+    "brand": "#bd00a4"
+  },
   "license": "CC-BY-SA",
-  "language": "en",
-  "basePath": "/hyperbook-evolutionaere-algorithmen"
+  "language": "de",
+  "basePath": "/hyperbook-ki"
 }
