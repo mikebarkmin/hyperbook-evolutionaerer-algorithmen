@@ -33,7 +33,17 @@ Das ist der Grundaufbau für unsere zwei Anwendungsfälle. Das T bezeichnet eine
 
 ### Aufgabe
 
-Implementiere das Gerüst der Klasse DNA in BlueJ, das heißt, dass nur die Methodenköpfe implementiert werden müssen und keine Funktionalität. Verwende für T den Datentyp char.
+Implementiere das Gerüst der Klasse DNA, das heißt, dass nur die Methodenköpfe implementiert werden müssen und keine Funktionalität. Verwende für T den Datentyp char.
+
+:::onlineide
+
+```java DNA.java
+public class DNA {
+
+}
+```
+
+:::
 
 ## Eine Hilfsmehtode: Zufallsbuchstabe
 
@@ -73,7 +83,39 @@ Du kannst mit `test[3]` auf ein Element zugreifen und mit `test[2] = 29` einem E
 
 ### Aufgabe
 
-Implementiere den Konstruktor so, dass der Parameter `anzahlGene` für die Anzahl der Plätze des Arrays `gene` genutzt wird.
+1. Verändere den Konstruktor so, dass der Parameter `anzahlGene` für die Anzahl der Plätze des Arrays `gene` genutzt wird und das Zufallsbuchstaben gesetzt werden.
+
+:::onlineide
+
+```java DNA.java
+
+DNA meineDNA = new DNA(5);
+System.out.println(meineDNA);
+
+public class DNA {
+
+  private char[] gene;
+
+  public DNA(int anzahlGene) {
+    gene = new int[10];
+    for (int i = 0; i < gene.length; i++) {
+      gene[i] = 'a';
+    }
+  }
+
+  public char zufallsbuchstabe() {
+    return (char) (Math.round(Math.random() * (127 - 32) + 32));
+  }
+
+  public String toString() {
+    return String.valueOf(this.gene);
+  }
+}
+
+```
+:::
+
+2. Teste deine Implementierung, indem du den grünen Play-Button drückst.
 
 ## Die Methode: Crossover
 
@@ -85,4 +127,160 @@ Der folgende Pseudocode zeigen den Algorithmus:
 
 ### Aufgabe
 
-Überführe das Struktogramm in dein BlueJ-Projekt.
+1. Implementiere die Methode crossover.
+
+:::onlineide
+
+```java DNA.java
+
+DNA meineDNA = new DNA(5);
+System.out.println(meineDNA);
+
+DNA partnerDNA = new DNA(5);
+System.out.println(partnerDNA);
+
+DNA neueDNA = meineDNA.crossover(partnerDNA);
+System.out.println(neueDNA);
+
+public class DNA {
+
+  private char[] gene;
+
+  public DNA(int anzahlGene) {
+    gene = new char[anzahlGene];
+    for (int i = 0; i < gene.length; i++) {
+      gene[i] = this.zufallsbuchstabe();
+    }
+  }
+
+  public char zufallsbuchstabe() {
+    return (char) (Math.round(Math.random() * (127 - 32) + 32));
+  }
+
+  public DNA crossover(DNA partner) {
+
+  }
+
+  public String toString() {
+    return String.valueOf(this.gene);
+  }
+}
+
+```
+:::
+
+2. Teste deine Implementierung, indem du den grünen Play-Button drückst.
+
+## Die Methode: Mutiere
+
+Die Methode Mutiere soll alle Gene durchlaufen und abhängig vom Parameter
+rate ein Gen durch einen Zufallsbuchstaben ersetzten.
+
+### Aufgabe
+
+1. Vervollständige die folgende Implementierung und überführe die Methode in dein BlueJ-Projekt.
+
+:::onlineide
+
+```java DNA.java
+
+DNA meineDNA = new DNA(5);
+System.out.println(meineDNA);
+meineDNA.mutiere(0.7);
+System.out.println(meineDNA);
+
+public class DNA {
+
+  private char[] gene;
+
+  public DNA(int anzahlGene) {
+    gene = new char[anzahlGene];
+    for (int i = 0; i < gene.length; i++) {
+      gene[i] = this.zufallsbuchstabe();
+    }
+  }
+
+  public char zufallsbuchstabe() {
+    return (char) (Math.round(Math.random() * (127 - 32) + 32));
+  }
+
+  public void mutiere(float rate) {
+    for (int ; i <; i) {
+      if (Math.random() < rate) {
+        gene = ;
+      }
+    }
+  }
+
+  public String toString() {
+    return String.valueOf(this.gene);
+  }
+}
+
+```
+:::
+
+## Die Methode: Berechne Fit
+
+Die Methode berechneFit soll ausrechnen wie nah man mit der DNA an einem gewünschten Ergebnis dran ist. 
+
+In unserem Beispiel wollen wir schauen wie nah wir an einem gewünschten Satz sind. 
+
+"Alge"
+
+### Aufgabe
+
+In der nachvollgenenen Implementierung ist die berechneFit-Methode schon implementiert. Deine Aufgabe ist es die Methode zu testen.
+
+1. Schreibe im Berech TESTEN Quelltext zum Testen der Methode, indem du die vollgenden Schritte ausführst.
+  1. Erzeuge einen String zielWort und belege ihn mit dem Zielwort.
+  2. Erzeuge ein DNA-Objekt, welche soviele Gene hat wie das Zielwort Buchstaben.
+  3. Rufe die Methode berechneFit mit dem Zielwort auf dem DNA-Objekt auf.
+  4. Gib den berechneten Fitwert aus.
+2. Erzeuge 1000 DNAs und testen den Fit bezüglich des Zielwortes.
+
+:::onlineide
+
+```java DNA.java
+
+// TESTEN
+
+// TESTEN
+
+public class DNA {
+
+  private char[] gene;
+  private float fit;
+
+  public DNA(int anzahlGene) {
+    gene = new char[anzahlGene];
+    for (int i = 0; i < gene.length; i++) {
+      gene[i] = this.zufallsbuchstabe();
+    }
+  }
+
+  public float gibFit() {
+    return fit;
+  }
+
+  public char zufallsbuchstabe() {
+    return (char) (Math.round(Math.random() * (127 - 32) + 32));
+  }
+
+  public void berechneFit(String ziel) {
+    int score = 0;
+    for (int i = 0; i < gene.length; i++) {
+      if (gene[i] == ziel.charAt(i)) {
+        score++;
+      }
+    }
+    fit = (float) score / (float) ziel.length();
+  }
+
+  public String toString() {
+    return String.valueOf(this.gene);
+  }
+}
+```
+
+:::
