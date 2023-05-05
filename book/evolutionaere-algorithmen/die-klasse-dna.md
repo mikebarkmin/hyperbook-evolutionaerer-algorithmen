@@ -1,6 +1,7 @@
 ---
 name: Die Klasse DNA
 lang: de
+index: 0
 ---
 
 # Die Klasse DNA

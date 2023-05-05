@@ -74,7 +74,7 @@ public class Population {
 
         for (int i = 0; i < this.population.length; i++) {
             if (this.population[i].gibFit() > weltrekord) {
-                bestes = this.population[i].gibSatz();
+                bestes = this.population[i].toString();
                 weltrekord = this.population[i].gibFit();
             }
         }
@@ -106,7 +106,7 @@ public class Population {
         int anzeigeLimit = Math.min(this.population.length, limit);
 
         for (int i = 0; i < anzeigeLimit; i++) {
-            alles += this.population[i].gibSatz() + "\n";
+            alles += this.population[i].toString() + "\n";
         }
 
         return alles;
