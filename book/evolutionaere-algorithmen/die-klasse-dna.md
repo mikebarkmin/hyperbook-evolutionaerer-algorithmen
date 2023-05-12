@@ -27,7 +27,7 @@ classDiagram
 ```
 
 :::alert{info}
-Die eckigen Klammern [] repräsentieren unsere erste lineare Datenstruktur das Array. Ein Array ist nicht anderes als eine Sammlung von gleichartigen Daten mit festgelegter Größe.
+Die eckigen Klammern [] repräsentieren unsere erste lineare Datenstruktur das Array. Ein Array ist nicht anderes als eine Sammlung von gleichartigen Daten mit festgelegter Größe. Im Konzeptspeicher findest du mehr Informationen zum Thema [Arrays](http://www.barkmin.eu/hyperbook-konzeptspeicher/programmierung/datenstrukturen/array).
 :::
 
 Das ist der Grundaufbau für unsere zwei Anwendungsfälle. Das T bezeichnet einen beliebigen Datentyp für die Gene. Dieser Datentyp T kann ein Integer, ein String oder eine eigene Klasse sein. Diesen müssen wir für jeden Anwendungsfall neu wählen.

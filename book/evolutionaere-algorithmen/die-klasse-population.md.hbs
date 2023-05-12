@@ -8,7 +8,6 @@ index: 1
 
 Eine Population repräsentiert eine Menge von Objekten, die eine DNA besitzen. Die Population kann sich mit der Zeit verändern, indem sie natürlich selektiert wird.
 
-
 ```mermaid
 classDiagram
     class Population {
@@ -226,3 +225,94 @@ public class DNA {
 ```
 
 :::
+
+# Die beste DNA finden
+
+Wir wollen nun die beste DNA finden. Das heißt, dass wir die DNA aus der Population finden möchten, die den besten Fit-Wert hat.
+
+Dazu benötigen wir das Konzept der linearen Suche.
+
+## Aufgabe
+
+1. Lies im Konzeptspeicher den Text zur [linearen Suche auf Arrays](http://www.barkmin.eu/hyperbook-konzeptspeicher/programmierung/datenstrukturen/array#lineare-suche) durch.
+2. Implementiere die methode `auswerten`. In auswerten soll von jedem DNA-Objekt der Fit-Wert berechnet werden. Außerdem soll die beste DNA im Attribute `bestes` gespeichert werden.
+3. Teste deine Implementierung.
+
+:::onlineide
+
+```java Popuplation.java
+// TESTEN
+Population meinePopulation = new Population("Informatik", 0.1, 100);
+meinePopulation.auswerten();
+System.out.println(meinePopulation.gibBestes());
+// TESTEN
+
+public class Population {
+
+    private int generationen;
+    private boolean fertig;
+    private float mutationsrate;
+    private String ziel;
+    private DNA[] population;
+    private DNA[] partnerpool;
+    private String bestes;
+
+    public Population(String pZiel, float pMutationsrate, int pAnzahl) {
+        this.population = new DNA[pAnzahl];
+        this.mutationsrate = pMutationsrate;
+        this.ziel = pZiel;
+        this.bestes = "";
+        this.generationen = 0;
+        this.fertig = false;
+
+        for (int i = 0; i < pAnzahl; i++) {
+            this.population[i] = new DNA(pZiel.length());
+        }
+    }
+
+    public String gibBestes() {
+        return this.bestes;
+    }
+
+    public void auswerten() {
+      // TODO
+    }
+
+    public String toString(int limit) {
+        String alles = "";
+        int anzeigeLimit = Math.min(this.population.length, limit);
+
+        for (int i = 0; i < anzeigeLimit; i++) {
+            alles += this.population[i].toString() + "\n";
+        }
+
+        return alles;
+    }
+}
+```
+
+```java DNA.java
+{{{ rfile "/archives/monkey-typer/DNA.java" }}}
+```
+
+
+:::
+
+:::collapsible{title="Hilfe: Struktogramm" id="585069"}
+
+::struktog{data="https://struktog.openpatch.org/#pako:eNqVk09rGzEQxb-K2VNCPEZ_R1LaXhpaKJS299DDSBplFza7xpZJ2-DvXqWkSVxqiHURSKM3er8n3Xe3c-axu7zvhtxddjrETM55CIksRJUNBJ0TKFeIZZDdsqs_19wqP01b3tQv7XRbK_M4zncfRr7lqT6JJe-CYkcQos2gYjQgMglAoZJlEZ_FrubdVD_P8_pRr_KPJtNkN2fDVBfD4t1CvGnT28V6Xu9GqsM8rUaebmrfli8uzhdHLxGSyiwwA5GNoENAcOglqJASEpbXOZp247hfdqkfxvwkrYSWOZQEHLwBk7UErSkCJy7YvJ8Ei5RXTqkMmRhBIFuwnjxkTDHRS1hfd3W9q4eknrFcD99XkTec-ok_DvXs18Dj-dGu6FH6gATGETYmxKBYOKDkWkAhnWTBRtboDYIs5FrUrCCUjOBzIaXFC7H3G5pSf2gh8rby6maID7c-P4j6wdPfjaPdo5DMqTgwwhBEaigjqgjIRmeJdFLQdbPjq4OwTbZRGScgZy_AIyLEFBQki5acP-1nNCpOkgmQglWA2hNIZG6kVI7hJan_hV37Ybv6g2vbPsYBpuN0AiuOSkDxqfXRkkC7IsFY05JJeAKdfeNTaNz-A4hQO2NDAa3QQhIRgUpqTynKyMbp1wJ6LPo2UuJ-HjNvuv3jWHY9Dzd9K5NOLLu7Ide-uwxW7n8Dw_995A"}
+
+:::
+
+# Das beste Hälfte
+
+Als nächstes wollen wir die besten 50% der DNA weiterverwenden, um uns unserem
+Ziel anzunähern. Die unteren 50% wollen wir verwerfen.
+
+Dazu müssen wir das Array `population` sortieren. Wir wollen zunächst nur
+verstehen wie ein Array sortiert werden kann.
+
+## Aufgaben
+
+1. Bearbeite den Text zum [Sortieren auf Arrays im Konzeptspeicher](http://www.barkmin.eu/hyperbook-konzeptspeicher/programmierung/datenstrukturen/array#sortieren).
+2. Entwerfe ein Struktogramm zum Sortieren des Arrays `population`. Du kannst dazu den [Struktog-Editor](https://struktog.openpatch.org/) verwenden.
